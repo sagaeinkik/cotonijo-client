@@ -1,0 +1,20 @@
+//Färger
+$dark: #212323;
+$mediumdark: #435563;
+$mediumlight: #8a98ab;
+$light: #dee3e9;
+$salmon: #da676d;
+$mint: #66b480;
+
+//Typsnitt
+$regular: Raleway, Arial, Helvetica, sans-serif;
+$accent: Armata, Courier, monospace;
+
+//Mixin
+@mixin transition {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}

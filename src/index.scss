@@ -1,4 +1,4 @@
-@use './assets/scss/vars' as v;
+@use './assets/static/scss/vars' as v;
 
 /* ALLMÄNNA REGLER */
 * {
@@ -51,4 +51,10 @@ input[type='submit'] {
     font-family: v.$regular;
     @include v.transition;
     font-weight: 400;
+}
+
+//Bilder
+img {
+    width: 100%;
+    display: block;
 }

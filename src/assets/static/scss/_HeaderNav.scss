@@ -1,0 +1,100 @@
+@use 'vars' as v;
+
+/* Navigeringsstilar */
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    //Logotyp
+    img {
+        width: 10em;
+        margin: 1em;
+    }
+
+    ul li a {
+        color: v.$light;
+    }
+
+    //Navigering för desktop
+    .nav-desktop {
+        width: 70%;
+        max-width: 1200px;
+        place-self: center;
+
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+
+    //Navigering för mobil
+    //Hamburgerknapp
+    .burger {
+        display: relative;
+        height: fit-content;
+        padding: 0.3em;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+
+        //Positionering
+        position: relative;
+        right: 1em;
+        top: 1.5em;
+        z-index: 1;
+
+        //Strecken
+        span.burger-bar {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: v.$light;
+            margin: 5px;
+            @include v.transition;
+        }
+
+        //Aktiv
+        &.active {
+            span.burger-bar:first-child {
+                transform: translateY(7px) rotate(405deg);
+            }
+            span.burger-bar:nth-child(2) {
+                opacity: 0;
+            }
+            span.burger-bar:last-child {
+                transform: translateY(-7px) rotate(-405deg);
+            }
+        }
+    }
+    //Själva nav
+    .nav-mobile {
+        background-color: v.$dark;
+        border-radius: 0 0 0 5em;
+
+        //Positionering
+        position: absolute;
+        top: -200dvh;
+        right: 0;
+        padding: 4em;
+        @include v.transition;
+
+        //UL
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            min-height: 40dvh;
+            min-width: 40dvw;
+        }
+
+        //Aktiv
+        &.active {
+            top: 0;
+        }
+    }
+}
+//Navigering för undersidorna
+header.subpage-header {
+    background-color: v.$dark;
+}

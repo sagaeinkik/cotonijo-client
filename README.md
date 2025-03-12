@@ -1,54 +1,16 @@
-# React + TypeScript + Vite
+# Cotonijo Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projektuppgift för Fördjupad Frontend-utveckling på Mittuniversitetet.
 
-Currently, two official plugins are available:
+## Bakgrund
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Det här är andra delen av projektuppgiften för Fördjupad Frontend-utveckling.
+Uppgiften går ut på att skapa en klientapplikation som låter en användare recensera saker (med full CRUD-funktionalitet naturligtvis). Applikationen ska konsumera ett externt API.
 
-## Expanding the ESLint configuration
+Jag har valt att göra en applikation som konsumerar ett API som listar olika länder med diverse fakta, där användare kan recensera sina resmål. Detta är klientapplikationen som konsumerar både det externa API:et, och det API jag skapat själv för att hantera användare och recensioner: https://github.com/sagaeinkik/cotonijoAPI
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Bra att veta
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Det externa API:et som används, https://restcountries.com/, returnerar mycket användbar data – på engelska. Därför har jag valt att göra klientapplikationen på engelska också, så att utskrifterna kan vara mer sömlösa utan för många språkbyten.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Sökningar på länder och användare görs på valfritt språk.
