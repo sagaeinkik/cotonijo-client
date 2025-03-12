@@ -1,0 +1,54 @@
+@use './assets/scss/vars' as v;
+
+/* ALLMÄNNA REGLER */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    //Gällande typsnitt
+    font-family: v.$regular;
+    line-height: 1.6;
+
+    //Gällande bredder
+    width: 100%;
+    max-width: 2800px;
+    margin: auto;
+    overflow-x: hidden;
+
+    //Position
+    position: relative;
+
+    //Färger
+    background-color: v.$light;
+}
+
+//Listor i menyer
+nav ul li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    @include v.transition;
+}
+
+//Input
+input,
+textarea,
+select {
+    font-family: v.$accent;
+    font-size: 1em;
+    padding: 0.5em 1em;
+}
+
+//Knappar
+button,
+input[type='submit'] {
+    cursor: pointer;
+    font-family: v.$regular;
+    @include v.transition;
+    font-weight: 400;
+}
