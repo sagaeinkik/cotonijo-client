@@ -15,6 +15,11 @@ export async function checkUser(): Promise<boolean> {
         const res = await fetch('https://cotonijoapi.up.railway.app/auth/me', {
             credentials: 'include', //Skicka med httpOnly-cookie
         });
+
+        if (!res.ok) {
+            return false;
+        }
+
         const result = await res.json();
 
         //Returnera om svaret från API innehåller "loggedIn"

@@ -1,6 +1,6 @@
 const CountriesPage = () => {
   return (
-    <div>CountriesPage</div>
+    <div>Här finns det sökfält för att söka på olika länder</div>
   )
 }
 

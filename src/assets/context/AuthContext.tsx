@@ -1,9 +1,9 @@
 import { LoginCredentials, SignupCredentials, LoginResponse, AuthContextType } from "../types/user.type";
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react"; 
+import React, { createContext, useState, useEffect, ReactNode } from "react"; 
 import { cookieCreator, deleteCookies, getCookie, checkUser } from "../static/utils/cookieHandler";
 
 //Skapa context
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
     username: null, 
     isAuthenticated: false,
     authLoading: true, 
@@ -15,7 +15,7 @@ const AuthContext = createContext<AuthContextType>({
 
 
 //API-url
-let apiUrl = "https://cotonijo.railway.up";
+let apiUrl = "https://cotonijoapi.up.railway.app/";
 
 //Provider
 export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
@@ -34,15 +34,20 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
             //Enskilt felmeddelande (t ex serverfel)
             setAuthError(errorResponse.message); 
         } else {
-            setAuthError("Ett okänt fel inträffade.");
+            setAuthError("An unknown error has occurred...");
         }
     };
     
 
     //Kolla om användare är inloggad
     const checkAuth = async () => {
-        const isLoggedIn = await checkUser(); 
+        // Om den inte laddar och användaren redan är autentiserad, avbryt
+        if (isAuthenticated || authLoading === false) return;
+        
+        setAuthLoading(true);
 
+        const isLoggedIn = await checkUser(); 
+        //Kolla om inloggad
         if(isLoggedIn) {
             setIsAuthenticated(true);
 
@@ -98,7 +103,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
             }
 
         } catch (error) {
-            setAuthError(error instanceof Error ? error.message : "Något gick fel vid inloggning...");
+            setAuthError(error instanceof Error ? error.message : "Something went wrong when logging in...");
         } finally {
             //Slå om loading till false
             setAuthLoading(false);
@@ -142,7 +147,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
                 }
             }
         } catch (error) {
-            setAuthError(error instanceof Error ? error.message : "Något gick fel vid registrering...");
+            setAuthError(error instanceof Error ? error.message : "Something went wrong when registering user...");
         } finally {
             setAuthLoading(false);
         }
@@ -161,7 +166,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     //Kör vid mount
     useEffect(() => {
         checkAuth();
-    })
+    }, [])
 
     //Return
     return (
@@ -170,6 +175,3 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
         </AuthContext.Provider>
     )
 }
-
-//Hook för användning
-export const useAuth = () => useContext(AuthContext);
