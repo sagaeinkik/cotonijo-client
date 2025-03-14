@@ -1,7 +1,7 @@
 import { ReviewInfo, NewReview, UpdateReview, ReviewResponse, ReviewContextType } from "../types/review.type";
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 //API
-let apiUrl: string = "https://cotonijo.up.railway.app";
+let apiUrl: string = "https://cotonijoapi.up.railway.app";
 
 //Skapa context
 export const ReviewContext = createContext<ReviewContextType>({
@@ -42,7 +42,7 @@ export const ReviewProvider: React.FC<{children: ReactNode}> = ({children}) => {
             }
 
             //Lagra reviews i local state
-            setReviews(data.reviews);
+            setReviews(data);
         } catch (error) {
             setReviewError(error instanceof Error ? error.message : "An unknown error has occurred...");
         } finally {
@@ -68,7 +68,7 @@ export const ReviewProvider: React.FC<{children: ReactNode}> = ({children}) => {
                 return;
             }
 
-            setReviews(data.reviews);
+            setReviews(data);
         } catch (error) {
             setReviewError(error instanceof Error ? error.message : "An unknown error has occurred...");
         } finally {

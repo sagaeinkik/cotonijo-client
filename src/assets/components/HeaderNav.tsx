@@ -1,13 +1,26 @@
 import { useState } from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+
+//Egna hooks
 import useBreakpoint from "../hooks/useBreakpoint";
+import { useAuth } from "../hooks/useAuth";
+
+//Grafik
 import "../static/scss/_HeaderNav.scss";
 import logo from "../static/images/logowhite.svg";
 
 const HeaderNav = () => {
     const isDesktop = useBreakpoint(768);
+    const { isAuthenticated, logout } = useAuth();
+    const navigate = useNavigate();
 
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState<boolean>(false);
+
+    const handleLogout = async () => {
+        await logout(); 
+        navigate("/");
+    }
+
 
   return (
     <div className="nav-flex"> 
@@ -25,16 +38,10 @@ const HeaderNav = () => {
               <li>
               <NavLink to="/countries">Search countries</NavLink>
               </li>
-
               <li>
                   <NavLink to="/reviews">Reviews</NavLink>
               </li>
-              <li>
-                  <a href="#">Underpage 2</a>
-              </li>
-              <li>
-                  <a href="#">Underpage 3</a>
-              </li>
+              { isAuthenticated ? <><li><NavLink to="/profile">Profile</NavLink></li><li><button onClick={handleLogout}>Sign out</button></li></>  : <li><NavLink to="/login">Sign in</NavLink></li>}
             </ul>
         </nav>
         </div>

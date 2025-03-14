@@ -10,12 +10,12 @@ export const AuthContext = createContext<AuthContextType>({
     authError: null, 
     login: async () => {},
     signup: async () => {},
-    logout: () => {}
+    logout: async () => {}
 })
 
 
 //API-url
-let apiUrl = "https://cotonijoapi.up.railway.app/";
+let apiUrl = "https://cotonijoapi.up.railway.app";
 
 //Provider
 export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
@@ -45,6 +45,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
         if (isAuthenticated || authLoading === false) return;
         
         setAuthLoading(true);
+
 
         const isLoggedIn = await checkUser(); 
         //Kolla om inloggad
@@ -154,13 +155,36 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     }
 
     //Logga ut
-    const logout = () => {
-        //Slå om autentisering
-        setIsAuthenticated(false);
+    const logout = async () => {
+        setAuthError(null);
+        try {
+            setAuthLoading(true);
 
-        //Rensa användarnamn
-        setUsername(null);
-        deleteCookies({ cookieName: "username" });
+            const response = await fetch(`${apiUrl}/logout`, {
+                method: "POST",
+                credentials: "include"
+            });
+
+            const data: LoginResponse = await response.json();
+
+            //Kolla om det gick bra
+            if(!response.ok) {
+                handleError(data);
+            }
+
+            console.log("Svar från api: ", data);
+            
+            //Slå om autentisering
+            setIsAuthenticated(false);
+    
+            //Rensa användarnamn
+            setUsername(null);
+            deleteCookies({ cookieName: "username" });
+
+
+        } catch (error) {
+            setAuthError(error instanceof Error ? error.message : "Something went wrong when logging out...");
+        }
     }
 
     //Kör vid mount
@@ -171,7 +195,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     //Return
     return (
         <AuthContext.Provider value={{username, isAuthenticated, authLoading, authError, login, signup, logout}}>
-            {children}
+            {children} 
         </AuthContext.Provider>
     )
 }

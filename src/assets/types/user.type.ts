@@ -64,5 +64,5 @@ export interface AuthContextType {
     authError: string | string[] | null;
     login: (credentials: LoginCredentials) => Promise<void>;
     signup: (credentials: SignupCredentials) => Promise<void>;
-    logout: () => void;
+    logout: () => Promise<void>;
 }

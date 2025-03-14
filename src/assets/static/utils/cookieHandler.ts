@@ -22,9 +22,10 @@ export async function checkUser(): Promise<boolean> {
 
         const result = await res.json();
 
-        //Returnera om svaret från API innehåller "loggedIn"
+        //Returnera om användaren är inloggad eller inte
         return result.loggedIn;
     } catch (error) {
+        console.log('error vid checkuser', error);
         return false;
     }
 }

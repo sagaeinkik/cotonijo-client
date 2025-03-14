@@ -1,8 +1,17 @@
 import "../static/scss/_HomePage.scss";
 import CtaButton from "../components/CtaButton"
 import HomepageReview from "../components/HomepageReview";
+import { useMappedReviews } from "../hooks/useMappedReviews";
 
 const HomePage = () => {
+  const { mappedReviews } = useMappedReviews(); 
+
+  let reviewsToDisplay = mappedReviews; 
+
+  if(reviewsToDisplay.length > 12) {
+    reviewsToDisplay = reviewsToDisplay.slice(0, 12);
+  }
+
   return (
     <>
       <section className="dark-bg first-block">
@@ -22,14 +31,16 @@ const HomePage = () => {
       <section className="dark-bg">
         <div className="content-wrapper">
           <h2>See what others have to say</h2>
-          <p>Browse through (number) reviews</p>
           <div className="review-wrapper">
-            <HomepageReview author="John Doe" country="France" content="I had a great time in France! The food was amazing and the people were so friendly. I can't wait to go back!" />
-            <HomepageReview author="Emily Smith" country="Italy" content="Italy was absolutely breathtaking! The history, the culture, and the food made it an unforgettable experience. Walking through the streets of Rome felt like stepping back in time. I can't wait to explore more of this beautiful country!" />
-            <HomepageReview author="Michael Johnson" country="Japan" content="I loved my trip to Japan! The temples, the cherry blossoms, and the incredible sushi made it a dream destination. Every city had its own unique charm, from the neon lights of Tokyo to the peaceful gardens of Kyoto. The hospitality of the people made it even more special." />
-            <HomepageReview author="Sophia Martinez" country="Australia" content="Australia was amazing! The beaches were stunning, and I had the best time exploring the Great Barrier Reef." />
-            <HomepageReview author="David Lee" country="Canada" content="Canada's nature is beyond beautiful. The mountains, lakes, and friendly people made my trip truly special. Banff National Park was a highlight, with breathtaking views around every corner. If you love outdoor adventures, Canada is the place to be!" />
+            
+            { /* Loopa igenom reviews */
+              reviewsToDisplay.map(review => (
+                <HomepageReview key={review.id} author={review.author.fullName} country={review.countryName} content={review.content} />
+              ))
+            }
+
           </div>
+            <p>Browse through {mappedReviews.length} reviews</p>
           <CtaButton link="/reviews" color="green" text="Read reviews" />
         </div>
       </section>
