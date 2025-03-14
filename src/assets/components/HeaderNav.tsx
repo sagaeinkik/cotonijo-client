@@ -22,12 +22,12 @@ const HeaderNav = () => {
         </button>}
         <nav className={`${isDesktop ? "nav-desktop" : "nav-mobile"} ${isActive ? "active" : ""}`}>
             <ul>
+              <li>
+              <NavLink to="/countries">Search countries</NavLink>
+              </li>
 
               <li>
                   <NavLink to="/reviews">Reviews</NavLink>
-              </li>
-              <li>
-                  <a href="#">Underpage 1</a>
               </li>
               <li>
                   <a href="#">Underpage 2</a>

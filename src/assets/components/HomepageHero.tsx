@@ -9,7 +9,7 @@ const HomepageHero = () => {
         <HeaderNav />
         <div className="hero-text">
           <span><i className="fa-solid fa-magnifying-glass"></i></span>
-          <Typewriter words={["Sweden", "Barbados", "Estonia", "Hong Kong", "Cocos Islands" ,"French Polynesia", "Denmark"]} />
+          <Typewriter words={["Sweden", "Barbados", "Estonia", "Hong Kong", "Cocos Islands" ,"French Polynesia", "Denmark", "Canada"]} />
         </div>
     </div>
   )
