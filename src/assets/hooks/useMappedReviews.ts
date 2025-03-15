@@ -12,6 +12,7 @@ export const useMappedReviews = () => {
         return {
             ...review,
             countryName: country ? country.name.common : 'Unknown',
+            flag: country ? country.flag : '',
         };
     });
 

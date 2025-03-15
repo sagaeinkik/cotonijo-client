@@ -12,7 +12,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
   
   //Laddar-indikator
   if (authLoading) {
-    return <div>Laddar...</div>;
+    return <div className="page-wrap">Laddar...</div>;
   }
   
   // Omdirigera till login om användaren inte är autentiserad

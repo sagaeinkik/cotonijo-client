@@ -12,8 +12,21 @@
         margin: 1em;
     }
 
-    ul li a {
+    //Länkfärg + knapp
+    ul li a,
+    ul li button {
         color: v.$light;
+
+        &:hover {
+            color: v.$mint;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+    }
+
+    //Logga ut-knapp
+    ul li button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
     }
 
     //Navigering för desktop
@@ -40,7 +53,7 @@
         //Positionering
         position: relative;
         right: 1em;
-        top: 1.5em;
+        top: 1em;
         z-index: 2;
 
         //Strecken
@@ -87,6 +100,11 @@
             align-items: center;
             min-height: 40dvh;
             min-width: 40dvw;
+
+            li a:hover,
+            li button:hover {
+                color: v.$salmon;
+            }
         }
 
         //Aktiv

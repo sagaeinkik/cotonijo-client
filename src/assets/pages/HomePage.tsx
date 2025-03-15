@@ -8,8 +8,8 @@ const HomePage = () => {
 
   let reviewsToDisplay = mappedReviews; 
 
-  if(reviewsToDisplay.length > 12) {
-    reviewsToDisplay = reviewsToDisplay.slice(0, 12);
+  if(reviewsToDisplay.length > 7) {
+    reviewsToDisplay = reviewsToDisplay.slice(0, 7);
   }
 
   return (

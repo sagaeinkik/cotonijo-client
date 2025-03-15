@@ -1,6 +1,6 @@
 import { useAuth } from "../hooks/useAuth"
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { isAuthenticated, login, authError } = useAuth();
@@ -46,6 +46,7 @@ const LoginPage = () => {
       </div>
       <input type="submit" value="Log in" />
     </form>
+    <p>Don't have an account yet? <Link to="/register">Sign up now!</Link></p>
     </>
   )
 }
