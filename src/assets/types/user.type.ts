@@ -59,6 +59,7 @@ export interface LoginResponse {
 //Context type
 export interface AuthContextType {
     username: string | null;
+    userId: number | null;
     isAuthenticated: boolean;
     authLoading: boolean;
     authError: string | string[] | null;

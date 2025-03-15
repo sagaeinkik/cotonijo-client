@@ -10,7 +10,7 @@ const LoginPage = () => {
     if(isAuthenticated) {
       navigate('/');
     }
-  })
+  }, [isAuthenticated])
 
   //States
   const [username, setUsername] = useState<string>('');
@@ -29,10 +29,12 @@ const LoginPage = () => {
 
     //Posta till API
     login({ username, password});
-
   }
+
+
   return (
-    <>
+    <div className="content-wrapper">
+      <h1>Login</h1>
     <form onSubmit={handleSubmit} className="login-form">
       { authError && <p className="error">{authError}</p>}
       { localError && <p className="error">{localError}</p>}
@@ -47,7 +49,7 @@ const LoginPage = () => {
       <input type="submit" value="Log in" />
     </form>
     <p>Don't have an account yet? <Link to="/register">Sign up now!</Link></p>
-    </>
+    </div>
   )
 }
 
