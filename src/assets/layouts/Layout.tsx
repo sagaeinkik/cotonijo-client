@@ -17,7 +17,12 @@ const Layout = () => {
             <Outlet />
         </main>
         <footer>
-            <p>Credits</p>
+            <div className="credits">
+                <a href="https://github.com/sagaeinkik" target="_blank"><i className="fa-brands fa-github"></i></a>
+                <a href="www.linkedin.com/in/saga-einarsdotter-kikajon-7b0470307" target="_blank"><i className="fa-brands fa-linkedin-in"></i></a>
+                <i className="fa-brands fa-react"></i>
+            </div>
+            <p>Made by Saga Einarsdotter Kikajon for Mid-Sweden University in 2025.</p>
         </footer>
     </>
   )

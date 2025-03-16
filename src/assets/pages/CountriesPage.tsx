@@ -44,7 +44,7 @@ const CountriesPage = () => {
   return (
     <div className="content-wrapper">
       <img src={worldMap} alt="Illustration of world map with connected dots on different continents" />
-      <h1>Search Countries</h1>
+      <h1>Countries</h1>
       <div className="form-group">
         <label htmlFor="searchCountry">Search country by name (in any language!)</label>
         <i className="fa-solid fa-magnifying-glass"></i><input type="search" name="searchCountry" id="searchCountry" placeholder="Sverige, Sweden, Schweden" value={searchString} onChange={(e) => { setSearchString(e.target.value); setCurrentPage(1) }} />

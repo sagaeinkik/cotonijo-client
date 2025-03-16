@@ -3,10 +3,11 @@ import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
 import { useCountries } from "../hooks/useCountries";
 import world2 from "../static/images/world2.svg"
+import { NavLink } from "react-router-dom";
 
 const NewReviewPage = () => {
   const { reviewLoading, reviewError, createReview } = useReviews();
-  const { userId } = useAuth();
+  const { user } = useAuth();
   const { countries } = useCountries();
 
   //States
@@ -34,7 +35,7 @@ const NewReviewPage = () => {
     }
 
     //Kolla så användarId finns (oinloggad ska omdirigeras men bra att ha extra)
-    if (!userId) {
+    if (!user?.id) {
       setLocalError("You must be logged in to leave a review.");
       return;
     }
@@ -44,7 +45,7 @@ const NewReviewPage = () => {
       content,
       rating,
       ccn3,
-      userId,
+      userId: user.id,
     });
 
 
@@ -60,6 +61,7 @@ const NewReviewPage = () => {
 
   return (
     <div className="content-wrapper">
+      <NavLink to="/reviews"><i className="fa-solid fa-arrow-left"></i> Back to reviews</NavLink>
       <img src={world2} alt="Illustration of a woman with a globe" />
       <h1>Leave a review</h1>
       <form onSubmit={handleSubmit}>

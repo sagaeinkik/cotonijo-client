@@ -57,7 +57,6 @@ export interface ReviewContextType {
     reviewLoading: boolean;
     reviewError: string | string[] | null;
     getReviews: () => Promise<void>;
-    getUserReviews: (userId: number) => Promise<void>;
     createReview: (review: NewReview) => Promise<void>;
     updateReview: (id: number, review: UpdateReview) => Promise<void>;
     deleteReview: (id: number) => Promise<void>;

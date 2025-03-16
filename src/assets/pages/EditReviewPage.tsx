@@ -1,6 +1,6 @@
 import { useReviews } from "../hooks/useReview";
 import { useCountries } from "../hooks/useCountries";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useState } from "react";
 import { UpdateReview } from "../types/review.type";
 import world2 from "../static/images/world2.svg"
@@ -66,6 +66,7 @@ const EditReviewPage = () => {
 
   return (
     <div className="content-wrapper">
+      <NavLink to="/reviews"><i className="fa-solid fa-arrow-left"></i> Back to all reviews</NavLink>
       <img src={world2} alt="Illustration of woman standing with globe" />
       <h1>Edit your review</h1>
       <form onSubmit={handleSubmit}>

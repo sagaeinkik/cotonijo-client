@@ -1,17 +1,17 @@
-import { LoginCredentials, SignupCredentials, LoginResponse, AuthContextType } from "../types/user.type";
+import { User, LoginCredentials, SignupCredentials, LoginResponse, AuthContextType } from "../types/user.type";
 import React, { createContext, useState, useEffect, ReactNode } from "react"; 
 import { cookieCreator, deleteCookies, getCookie, checkUser } from "../static/utils/cookieHandler";
 
 //Skapa context
 export const AuthContext = createContext<AuthContextType>({
-    username: null, 
-    userId: null,
+    user: null,
     isAuthenticated: false,
     authLoading: true, 
     authError: null, 
     login: async () => {},
     signup: async () => {},
-    logout: async () => {}
+    logout: async () => {},
+    deleteAccount: async () => {}
 })
 
 
@@ -21,8 +21,7 @@ let apiUrl = "https://cotonijoapi.up.railway.app";
 //Provider
 export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     //States
-    const [username, setUsername] = useState<string | null>(null);
-    const [userId, setUserId] = useState<number | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [authLoading, setAuthLoading] = useState<boolean>(true);
     const [authError, setAuthError] = useState<string | string[] | null>(null);
@@ -54,22 +53,21 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
         if(isLoggedIn) {
             setIsAuthenticated(true);
 
-            //Hämta användarnamn och id från cookie
-            const username = getCookie("username"); 
-            const userId = getCookie("userId");
+            const storedUser: User = {
+                id: parseInt(getCookie("userId") || "0"),
+                username: getCookie("username") || "",
+                fullName: getCookie("fullName") || "",
+                email: getCookie("email") || "", 
+                registered: new Date(getCookie("registered") || "")
+            };
 
-            //Sätt användarnamn om det finns
-            if(username) {
-                setUsername(username);
-            }
-            //Sätt id om det finns
-            if(userId) {
-                setUserId(parseInt(userId));
-            }
+            //Lagra user i state
+            setUser(storedUser);
+            //Sätt autentiserad
+            setIsAuthenticated(true);
         } else {
             setIsAuthenticated(false);
-            setUsername(null);
-            setUserId(null);
+
         }
         setAuthLoading(false);
     }
@@ -102,14 +100,18 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
             //Om lyckad inloggning
             if(data.loggedInUser) {
-                //Spara användarnamn, slå om autentisering till true
-                setUsername(data.loggedInUser.username);
-                setUserId(data.loggedInUser.id);
+                const loggedInUser: User = data.loggedInUser;
+
+                //Spara användare, slå om autentisering till true
+                setUser(loggedInUser);
                 setIsAuthenticated(true);
-                //Lagra i cookie (ifall man refreshar) 
-                if(data.loggedInUser.username) {
-                    cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
+                //Lagra allt i cookie (ifall man refreshar) 
+                if(data.loggedInUser) {
                     cookieCreator({ cookieName: "userId", cookieValue: data.loggedInUser.id.toString()});
+                    cookieCreator({ cookieName: "fullName", cookieValue: data.loggedInUser.fullName});
+                    cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
+                    cookieCreator({ cookieName: "email", cookieValue: data.loggedInUser.email});
+                    cookieCreator({ cookieName: "registered", cookieValue: data.loggedInUser.registered.toString()});
                 }
             }
 
@@ -148,15 +150,18 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
             //Om lyckad registrering
             if(data.newUser) {
+                const newUser: User = data.newUser;
                 //Sätt authenticated
                 setIsAuthenticated(true);
-                setUsername(data.newUser.username);
-                setUserId(data.newUser.id);
+                setUser(newUser);
 
                 //Spara i kaka
-                if(data.newUser.username) {
-                    cookieCreator({ cookieName: "username", cookieValue: data.newUser.username});
-                    cookieCreator({ cookieName: "userId", cookieValue: data.newUser.id.toString()});
+                if(data.loggedInUser) {
+                    cookieCreator({ cookieName: "userId", cookieValue: data.loggedInUser.id.toString()});
+                    cookieCreator({ cookieName: "fullName", cookieValue: data.loggedInUser.fullName});
+                    cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
+                    cookieCreator({ cookieName: "email", cookieValue: data.loggedInUser.email});
+                    cookieCreator({ cookieName: "registered", cookieValue: data.loggedInUser.registered.toString()});
                 }
             }
         } catch (error) {
@@ -188,14 +193,55 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
             setIsAuthenticated(false);
     
             //Rensa användarnamn
-            setUsername(null);
-            setUserId(null);
-            deleteCookies({ cookieName: "username" });
-            deleteCookies({ cookieName: "userId" });
+            setUser(null);
 
+            //Ta bort cookies
+            deleteCookies({ cookieName: "userId" });
+            deleteCookies({ cookieName: "username" });
+            deleteCookies({ cookieName: "fullName" });
+            deleteCookies({ cookieName: "email" });
+            deleteCookies({ cookieName: "registered" });
 
         } catch (error) {
             setAuthError(error instanceof Error ? error.message : "Something went wrong when logging out...");
+        } finally {
+            setAuthLoading(false);
+        }
+    }
+
+    //Radera användare
+    const deleteAccount = async (id: number) => {
+        setAuthError(null);
+        try {
+
+            setAuthLoading(true);
+
+            const response = await fetch(`${apiUrl}/users/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            }
+            );
+
+            const data: LoginResponse = await response.json();
+
+            if(!response.ok) {
+                handleError(data);
+            }
+
+            //Radering lyckades
+            if (data.deletedUser) {
+                setUser(null);
+                setIsAuthenticated(false);
+
+                //Radera cookies
+                deleteCookies({ cookieName: "userId" });
+                deleteCookies({ cookieName: "username" });
+                deleteCookies({ cookieName: "fullName" });
+                deleteCookies({ cookieName: "email" });
+            }
+            
+        } catch (error) {
+            setAuthError(error instanceof Error ? error.message : "Something went wrong when deleting user...");
         } finally {
             setAuthLoading(false);
         }
@@ -208,7 +254,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
     //Return
     return (
-        <AuthContext.Provider value={{username, userId, isAuthenticated, authLoading, authError, login, signup, logout}}>
+        <AuthContext.Provider value={{user, isAuthenticated, authLoading, authError, login, signup, logout, deleteAccount}}>
             {children} 
         </AuthContext.Provider>
     )

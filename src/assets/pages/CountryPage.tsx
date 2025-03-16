@@ -115,12 +115,12 @@ const CountryPage = () => {
         if (languageEntries.length === 1) {
         // Ett språk
         const [code, language] = languageEntries[0];
-        return <span>In {country.name.common} they speak {language}. </span>;
+        return <span>In {country.name.common} they speak {language}, </span>;
         } else {
         // Flera språk
         const languageValues = languageEntries.map(([code, language]) => language);
         const lastLanguage = languageValues.pop();
-        return <span>In {country.name.common} they speak {languageValues.join(', ')} and {lastLanguage}. </span>;
+        return <span>In {country.name.common} they speak {languageValues.join(', ')} and {lastLanguage}, </span>;
       }
       })()}
     
@@ -139,7 +139,7 @@ const CountryPage = () => {
 
         return (
           <span>
-           The currency used is{" "}
+            and the currency used is{" "}
             {formattedCurrencies.length > 1
             ? formattedCurrencies.slice(0, -1).join(", ") + " and " + formattedCurrencies[formattedCurrencies.length - 1]
             : formattedCurrencies[0]

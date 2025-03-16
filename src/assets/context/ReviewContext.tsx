@@ -9,7 +9,6 @@ export const ReviewContext = createContext<ReviewContextType>({
     reviewLoading: false, 
     reviewError: null, 
     getReviews: async () => {},
-    getUserReviews: async () => {},
     createReview: async () => {},
     updateReview: async () => {},
     deleteReview: async () => {}
@@ -42,32 +41,6 @@ export const ReviewProvider: React.FC<{children: ReactNode}> = ({children}) => {
             }
 
             //Lagra reviews i local state
-            setReviews(data);
-        } catch (error) {
-            setReviewError(error instanceof Error ? error.message : "An unknown error has occurred...");
-        } finally {
-            setReviewLoading(false);
-        }
-    }
-
-    //Fetchanrop för inlägg av specifik användare
-    const getUserReviews = async (userId: number) => {
-        setReviewError(null);
-
-        try {
-            //Sätt loading
-            setReviewLoading(true);
-
-            //Anrop
-            const response = await fetch(`${apiUrl}/user/${userId}/reviews`);
-            const data = await response.json();
-
-            //Sätt error
-            if (!response.ok) {
-                setReviewError(data.https_response?.message || data.message || "Couldn't fetch reviews...");
-                return;
-            }
-
             setReviews(data);
         } catch (error) {
             setReviewError(error instanceof Error ? error.message : "An unknown error has occurred...");
@@ -196,7 +169,7 @@ export const ReviewProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
     //Returnera
     return (
-        <ReviewContext.Provider value={{reviews, reviewLoading, reviewError, getReviews, getUserReviews, createReview, updateReview, deleteReview}}>
+        <ReviewContext.Provider value={{reviews, reviewLoading, reviewError, getReviews, createReview, updateReview, deleteReview}}>
             {children}
         </ReviewContext.Provider>
     )

@@ -4,8 +4,8 @@ export interface User {
     fullName: string;
     username: string;
     email: string;
-    password: string;
-    registered: string;
+    password?: string;
+    registered: Date;
 }
 
 //Skickas med i POST-anrop för inloggning
@@ -43,6 +43,15 @@ export interface LoginResponse {
         registered: Date;
     };
 
+    //Om lyckad radering
+    deletedUser?: {
+        id: number;
+        fullName: string;
+        email: string;
+        username: string;
+        registered: Date;
+    };
+
     //Om egna error från API:et
     https_response?: {
         message: string;
@@ -58,12 +67,12 @@ export interface LoginResponse {
 
 //Context type
 export interface AuthContextType {
-    username: string | null;
-    userId: number | null;
+    user: User | null;
     isAuthenticated: boolean;
     authLoading: boolean;
     authError: string | string[] | null;
     login: (credentials: LoginCredentials) => Promise<void>;
     signup: (credentials: SignupCredentials) => Promise<void>;
     logout: () => Promise<void>;
+    deleteAccount: (id: number) => Promise<void>;
 }

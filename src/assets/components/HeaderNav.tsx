@@ -36,7 +36,7 @@ const HeaderNav = () => {
         <nav className={`${isDesktop ? "nav-desktop" : "nav-mobile"} ${isActive ? "active" : ""}`}>
             <ul>
               <li>
-              <NavLink to="/countries">Search countries</NavLink>
+              <NavLink to="/countries">Countries</NavLink>
               </li>
               <li>
                   <NavLink to="/reviews">Reviews</NavLink>

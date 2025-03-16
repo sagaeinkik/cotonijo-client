@@ -21,7 +21,7 @@ interface ReviewProps {
 }
 
 const Review: React.FC<ReviewProps> = ({ review }) => {
-  const { userId } = useAuth();
+  const { user } = useAuth();
   const { deleteReview } = useReviews();
 
   //Håller koll på delete Confirm
@@ -55,7 +55,12 @@ const Review: React.FC<ReviewProps> = ({ review }) => {
 
   //Om användare inloggad, visa kontroller för att hantera recensioner
   const reviewControls = () => {
-    if (review.author.id === userId) {
+    if (!user || review.author.id !== user.id) {
+      return null; // Om ingen användare är inloggad eller inte är författaren, returnera null
+  }
+
+    
+    if (review.author.id === user!.id) {
       return (
         <div className="review-controls">
           {deleteConfirm && (

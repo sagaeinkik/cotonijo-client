@@ -1,5 +1,4 @@
 import HeaderNav from "./HeaderNav";
-/* import asiaHero from "../static/images/asiahero2.png" */
 import Typewriter from "./Typewriter";
 import "../static/scss/_HomepageHero.scss";
 
