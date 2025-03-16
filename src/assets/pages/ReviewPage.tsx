@@ -27,7 +27,7 @@ const ReviewPage = () => {
   return (
     <div className="content-wrapper">
       <img src={ReviewImg} alt="Generic illustration of a woman in front of reviews" className="subpage-image" />
-      <p>Been abroad lately? <NavLink to="/leave-review" className="review-page-btn">Leave a review! <i className="fa-solid fa-arrow-right"></i></NavLink></p>
+      <p>Been abroad lately? <NavLink to="/leave-review" className="review-page button">Leave a review! <i className="fa-solid fa-arrow-right"></i></NavLink></p>
       <h1>Reviews</h1>
       {/* Sökruta */}
       <div className="form-group">
@@ -48,10 +48,10 @@ const ReviewPage = () => {
       {totalPages > 1 && (
         <div className="pagination">
           {/* Disable:a knapp baserat på om man är på första sidan, räkna ut vad nästa sida blir */}
-          <button disabled={currentPage === 1} onClick={() => setCurrentPage((prev) => Math.max(prev -1, 1))}>Previous</button>
+          <button className="button" disabled={currentPage === 1} onClick={() => setCurrentPage((prev) => Math.max(prev -1, 1))}>Previous</button>
           <span>Page {currentPage} of {totalPages}</span>
           {/* Disable:a om man är på sista sidan; räkna ut vad förra sidan blir */}
-          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} >Next</button>
+          <button className="button" disabled={currentPage === totalPages} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} >Next</button>
         </div>
       )}
     </div>

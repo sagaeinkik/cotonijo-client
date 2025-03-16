@@ -58,7 +58,7 @@ const RegisterPage = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className="button" />
       </form>
       <p>Already have an account? <Link to="/login">Log in here!</Link></p>
     </div>

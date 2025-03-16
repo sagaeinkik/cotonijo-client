@@ -2,6 +2,7 @@ import { useCountries } from "../hooks/useCountries";
 import worldMap from "../static/images/world.svg";
 import Country from "../components/Country";
 import { useState } from "react";
+import "../static/scss/CountriesPage.scss"
 
 const CountriesPage = () => {
   const { countries } = useCountries();
@@ -45,9 +46,12 @@ const CountriesPage = () => {
     <div className="content-wrapper">
       <img src={worldMap} alt="Illustration of world map with connected dots on different continents" />
       <h1>Countries</h1>
-      <div className="form-group">
+      <div className="form-group search-group">
         <label htmlFor="searchCountry">Search country by name (in any language!)</label>
+        <div className="search-container">
+
         <i className="fa-solid fa-magnifying-glass"></i><input type="search" name="searchCountry" id="searchCountry" placeholder="Sverige, Sweden, Schweden" value={searchString} onChange={(e) => { setSearchString(e.target.value); setCurrentPage(1) }} />
+        </div>
       </div>
       {/* Loopa igenom countries */
       paginatedCountries.length > 0 ? (
@@ -61,10 +65,10 @@ const CountriesPage = () => {
     {totalPages > 1 && (
         <div className="pagination">
           {/* Disable:a knapp baserat på om man är på första sidan, räkna ut vad nästa sida blir */}
-          <button disabled={currentPage === 1} onClick={() => setCurrentPage((prev) => Math.max(prev -1, 1))}>Previous</button>
+          <button className="button" disabled={currentPage === 1} onClick={() => setCurrentPage((prev) => Math.max(prev -1, 1))}>Previous</button>
           <span>Page {currentPage} of {totalPages}</span>
           {/* Disable:a om man är på sista sidan; räkna ut vad förra sidan blir */}
-          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} >Next</button>
+          <button className="button" disabled={currentPage === totalPages} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} >Next</button>
         </div>
       )}
     </div> /* Slut på content-wrapper */

@@ -4,6 +4,7 @@ import { useMappedReviews } from "../hooks/useMappedReviews";
 import { NavLink } from "react-router-dom";
 import airplane from "../static/images/airplane.svg";
 import Review from "../components/Review"
+import "../static/scss/CountryPage.scss"
 
 const CountryPage = () => {
   //Hämta ccn3 ur params
@@ -27,12 +28,12 @@ const CountryPage = () => {
   }
 
   return (
-    <div className="content-wrapper">
-      <NavLink to="/countries"><i className="fa-solid fa-arrow-left"></i> Back to countries</NavLink>
+    <div className="content-wrapper country-page">
+      <NavLink to="/countries" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to countries</NavLink>
       <img src={airplane} alt="Illustration of an airplane seen from the front" />
       <h1>{country.name.official}</h1>
       { country.name.official !== country.name.common && <h2>Commonly known as {country.name.common}</h2> }
-      <p>{country.flag}</p>
+      <p className="cp-country-flag">{country.flag}</p>
 
       <h2>Information</h2>
       <h3>Names and translations</h3>
@@ -79,7 +80,7 @@ const CountryPage = () => {
         })()}
 
       <h3>About</h3>
-      <p>The population is {country.population} and it has an area of {country.area}&#13217;.</p>
+      <p>The population is {country.population} and it has an area of {country.area}&#13218;.</p>
       <span>{country.name.common} is {country.independent ? "" : "not"} an independent country and {country.unMember ? "" : "not" } a member of the United Nations. </span>
 
       {/* Kontinenter */}

@@ -30,7 +30,8 @@ nav ul li {
     list-style: none;
 }
 
-a {
+a,
+i {
     text-decoration: none;
     @include v.transition;
 }
@@ -41,7 +42,7 @@ textarea,
 select {
     font-family: v.$accent;
     font-size: 1em;
-    padding: 0.5em 1em;
+    padding: 0.7em 1.3em;
 }
 
 //Knappar
@@ -67,20 +68,190 @@ h3 {
     font-weight: 400;
 }
 
-main {
-    padding: 1em;
-}
-
 //Wrappers som innehåller typ allt textinnehåll
-.page-wrap,
 .content-wrapper {
-    max-width: 55em;
+    max-width: 50em;
     margin: auto;
 }
 
 .content-wrapper {
+    padding: 1em;
     h1,
     h2 {
         text-align: center;
+    }
+
+    //Bilder
+    img {
+        width: 100%;
+        max-width: 25em;
+        margin: 3em auto;
+    }
+
+    //Sökrutor
+    .search-group {
+        margin: 2em 0;
+
+        label {
+            margin-left: 1em;
+        }
+
+        .search-container {
+            position: relative;
+
+            input[type='search'] {
+                width: 100%;
+                padding-left: 2.5em;
+                border: none;
+                border-radius: 400px;
+
+                &:focus {
+                    outline: 1px solid v.$mediumdark;
+                }
+            }
+        }
+
+        //Ikonen
+        i {
+            position: absolute;
+            left: 1em;
+            top: 50%;
+            transform: translateY(-50%);
+            color: v.$mediumlight;
+        }
+    }
+}
+
+/*  DELADE REGLER */
+
+//Länkar som ska se ut som knappar
+.button {
+    padding: 0.5em 1em;
+    margin-top: 1em;
+    display: inline-block;
+    color: white;
+    border-radius: 10px;
+    background-color: v.$mediumdark;
+
+    &.green {
+        background-color: v.$mint;
+
+        &:hover {
+            background-color: v.$darkmint;
+        }
+    }
+
+    &.red {
+        background-color: v.$salmon;
+
+        &:hover {
+            background-color: v.$darksalmon;
+        }
+    }
+
+    &.blue {
+        background-color: v.$mediumlight;
+
+        &:hover {
+            background-color: v.$mediumdark;
+        }
+    }
+}
+
+//Pagination
+.pagination {
+    display: block;
+    width: fit-content;
+    margin: 2em auto 0;
+
+    //Knapparna
+    button {
+        margin: 0.5em;
+        border: none;
+
+        &:hover {
+            background-color: v.$mint;
+        }
+    }
+
+    button:disabled {
+        background-color: v.$mediumlight;
+    }
+}
+
+//Footer
+footer {
+    //Bakgrund
+    background-color: v.$dark;
+    background-image: url('./assets/static/images/arrow2.png');
+    background-size: 15px;
+    background-repeat: repeat-x;
+
+    //Fluff
+    color: v.$light;
+    padding: 2em;
+    text-align: center;
+    margin-top: 4em;
+
+    //Länkarna + ikon
+    .credits {
+        a,
+        i {
+            display: block;
+            font-size: 1.7em;
+            margin: 1em;
+            color: v.$mint;
+
+            &:hover {
+                color: v.$salmon;
+            }
+        }
+    }
+}
+
+//Fetstilt
+.bold-text {
+    font-weight: 600;
+}
+
+/* RECENSIONER */
+.review {
+    margin-top: 1em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 1.5em;
+    border-radius: 25px;
+
+    //Användarnamn
+    .username {
+        color: v.$mediumlight;
+    }
+
+    //Betyg
+    //Fylld stjärna
+    .fa-solid.fa-star {
+        color: v.$salmon;
+    }
+    .fa-regular.fa-star {
+        color: v.$mediumdark;
+    }
+
+    //Flagga
+    .country-flag {
+        margin-right: 0.3em;
+        font-size: 1.8em;
+        position: relative;
+        top: 0.1em;
+    }
+
+    //Textinnehåll
+    .review-content {
+        margin: 1em 0;
+    }
+
+    //Publiceringsdatum
+    .published {
+        color: v.$mediumlight;
+        font-style: italic;
     }
 }

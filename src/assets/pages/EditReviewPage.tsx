@@ -100,7 +100,7 @@ const EditReviewPage = () => {
             <option value="5">5</option>
           </select>
         </div>
-        <input type="submit" value={reviewLoading ? "Saving..." : "Save"} />
+        <input type="submit" className="button" value={reviewLoading ? "Saving..." : "Save"} />
       </form>
     </div>
   )

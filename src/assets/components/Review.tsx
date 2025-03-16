@@ -66,8 +66,8 @@ const Review: React.FC<ReviewProps> = ({ review }) => {
           {deleteConfirm && (
             <p className="confirm-message">Are you sure you want to delete this review?</p>
           )}
-          <NavLink to={`/edit-review/${review.id}`} className="edit-review">Edit</NavLink>
-          <button className="delete-review" onClick={handleDelete}>
+          <NavLink to={`/edit-review/${review.id}`} className="edit-review button">Edit</NavLink>
+          <button className="delete-review button" onClick={handleDelete}>
             {deleteConfirm ? "Yes, I'm sure. Delete" : "Delete"}
           </button>
         </div>
@@ -83,11 +83,11 @@ const Review: React.FC<ReviewProps> = ({ review }) => {
     <div className="review">
         <h3>{review.author.fullName}</h3>
         <p className="username">@{review.author.username}</p>
-        <p className="rating">Rating: {getRatingStars(review.rating)}</p>
         <p className="country">
             <span className="country-flag">{review.flag}</span>
             {review.countryName}
         </p>
+        <p className="rating">Rating: {getRatingStars(review.rating)}</p>
         <p className="review-content">{review.content}</p>
         <p className="published">
             Published {new Date(String(review.posted)).toLocaleDateString()}

@@ -95,7 +95,7 @@ const NewReviewPage = () => {
             <option value="5">5</option>
           </select>
         </div>
-        <input type="submit" value={reviewLoading ? "Submitting..." : "Submit"} />
+        <input type="submit" className="button" value={reviewLoading ? "Submitting..." : "Submit"} />
       </form>
     </div>
   )

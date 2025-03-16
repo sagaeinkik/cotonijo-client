@@ -1,1 +1,94 @@
 @use 'vars' as v;
+
+//Sektioner
+section {
+    padding: 7em 1em 3em;
+
+    h1,
+    h2 {
+        margin-bottom: 1em;
+    }
+
+    a.button {
+        margin: 2em auto 1em;
+        display: block;
+        width: fit-content;
+    }
+}
+
+.dark-bg {
+    background-color: v.$dark;
+    color: v.$light;
+}
+
+//Första
+.first-block {
+    padding-top: 2em;
+    padding-bottom: 4em;
+}
+
+//Andra sektionen
+.second-block {
+    background-image: url('../images/arrow.png');
+    background-size: 15px;
+    background-repeat: repeat-x;
+}
+
+//Cotonijo-text
+.last-block {
+    text-align: center;
+    .big-text {
+        color: v.$mediumlight;
+        font-size: 4em;
+        font-weight: 600;
+    }
+}
+
+//Recensions-blocket
+.page-wrap {
+    h2,
+    .browse,
+    a {
+        text-align: center;
+    }
+
+    //Browse-text
+    .browse {
+        margin-top: 2em;
+    }
+}
+
+//Recensionerna
+.review-wrapper {
+    padding: 1em;
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    gap: 2em;
+
+    .hp-review {
+        //Färger
+        background-color: v.$light;
+        color: v.$dark;
+
+        //Storlekar
+        max-height: 40em;
+        min-width: 20em;
+        overflow-y: scroll;
+
+        //Yta
+        padding: 1em;
+        border-radius: 15px;
+
+        display: flex;
+        flex-direction: column;
+
+        //Citat-ikon
+        i {
+            font-size: 4em;
+            margin: 2rem;
+            color: v.$mediumlight;
+            align-self: end;
+        }
+    }
+}

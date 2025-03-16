@@ -16,11 +16,16 @@ const HeaderNav = () => {
 
     const [isActive, setIsActive] = useState<boolean>(false);
 
+    //Logga ut
     const handleLogout = async () => {
         await logout(); 
         navigate("/");
     }
 
+    //Funktion för att stänga menyn
+    const closeMenu = () => {
+        setIsActive(false); 
+    }
 
   return (
     <div className="nav-flex"> 
@@ -36,12 +41,12 @@ const HeaderNav = () => {
         <nav className={`${isDesktop ? "nav-desktop" : "nav-mobile"} ${isActive ? "active" : ""}`}>
             <ul>
               <li>
-              <NavLink to="/countries">Countries</NavLink>
+              <NavLink to="/countries" onClick={closeMenu}>Countries</NavLink>
               </li>
               <li>
-                  <NavLink to="/reviews">Reviews</NavLink>
+                  <NavLink to="/reviews" onClick={closeMenu}>Reviews</NavLink>
               </li>
-              { isAuthenticated ? <><li><NavLink to="/profile">Profile</NavLink></li><li><button onClick={handleLogout}>Sign out</button></li></>  : <li><NavLink to="/login">Sign in</NavLink></li>}
+              { isAuthenticated ? <><li><NavLink to="/profile" onClick={closeMenu}>Profile</NavLink></li><li><button onClick={handleLogout}>Sign out</button></li></>  : <li><NavLink to="/login">Sign in</NavLink></li>}
             </ul>
         </nav>
         </div>
