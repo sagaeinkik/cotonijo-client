@@ -61,7 +61,7 @@ const NewReviewPage = () => {
 
   return (
     <div className="content-wrapper">
-      <NavLink to="/reviews"><i className="fa-solid fa-arrow-left"></i> Back to reviews</NavLink>
+      <NavLink to="/reviews" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to reviews</NavLink>
       <img src={world2} alt="Illustration of a woman with a globe" />
       <h1>Leave a review</h1>
       <form onSubmit={handleSubmit}>

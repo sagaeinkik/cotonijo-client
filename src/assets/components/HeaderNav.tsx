@@ -46,7 +46,7 @@ const HeaderNav = () => {
               <li>
                   <NavLink to="/reviews" onClick={closeMenu}>Reviews</NavLink>
               </li>
-              { isAuthenticated ? <><li><NavLink to="/profile" onClick={closeMenu}>Profile</NavLink></li><li><button onClick={handleLogout}>Sign out</button></li></>  : <li><NavLink to="/login">Sign in</NavLink></li>}
+              { isAuthenticated ? <><li><NavLink to="/profile" onClick={closeMenu}>Profile</NavLink></li><li><button onClick={handleLogout}>Sign out</button></li></>  : <li><NavLink to="/login" onClick={closeMenu}>Sign in</NavLink></li>}
             </ul>
         </nav>
         </div>

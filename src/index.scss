@@ -1,4 +1,5 @@
 @use './assets/static/scss/vars' as v;
+@use './assets/static/scss/MediaQueries';
 
 /* ALLMÄNNA REGLER */
 * {
@@ -49,10 +50,21 @@ select {
 button,
 input[type='submit'] {
     cursor: pointer;
+    border: none;
     font-size: 1em; //För att gälla knappar också
     font-family: v.$regular;
     @include v.transition;
     font-weight: 400;
+}
+input[type='submit'] {
+    display: block;
+    padding: 1em 1.4em;
+    margin-top: 2em;
+    background-color: v.$mint;
+
+    &:hover {
+        background-color: v.$darkmint;
+    }
 }
 
 //Bilder
@@ -72,10 +84,8 @@ h3 {
 .content-wrapper {
     max-width: 50em;
     margin: auto;
-}
+    padding: 1.5em;
 
-.content-wrapper {
-    padding: 1em;
     h1,
     h2 {
         text-align: center;
@@ -122,6 +132,32 @@ h3 {
     }
 }
 
+//Content-wrapper för login och register
+.auth-wrapper {
+    min-height: 70dvh;
+
+    //Länkarna
+    .link {
+        margin-top: 1em;
+
+        a {
+            color: v.$mediumdark;
+            text-decoration: 2px dotted underline;
+
+            &:hover {
+                color: v.$salmon;
+            }
+        }
+    }
+}
+
+//Error och confirm-delete
+.error,
+.confirm-message {
+    color: v.$salmon;
+    margin: 1em 0 0;
+}
+
 /*  DELADE REGLER */
 
 //Länkar som ska se ut som knappar
@@ -156,6 +192,11 @@ h3 {
             background-color: v.$mediumdark;
         }
     }
+}
+
+//Knappar som ska se ut som knapparna ovan
+button.button {
+    padding: 0.75em 1em;
 }
 
 //Pagination
@@ -253,5 +294,59 @@ footer {
     .published {
         color: v.$mediumlight;
         font-style: italic;
+    }
+
+    //Knappar (inloggad)
+    .review-controls {
+        //Delete
+        .delete-review.button {
+            padding: 0.75em 1em;
+            background-color: v.$salmon;
+
+            &:hover {
+                background-color: v.$darksalmon;
+            }
+        }
+
+        //Edit
+        a.edit-review.button {
+            margin-right: 2em;
+        }
+        .edit-review.button:hover {
+            background-color: v.$mediumlight;
+        }
+    }
+}
+
+//Back to-länk
+.back-link {
+    color: v.$mediumdark;
+    text-decoration: 2px dotted underline;
+
+    &:hover {
+        color: v.$salmon;
+    }
+}
+
+/* FORMULÄR */
+.form-group {
+    label {
+        margin: 1.5em 0 0.5em 1em;
+        display: block;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea,
+    select {
+        width: 100%;
+        border: none;
+        border-radius: 15px;
+    }
+
+    //Content
+    textarea {
+        min-height: 15em;
     }
 }

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useMappedReviews } from "../hooks/useMappedReviews"
 import ReviewImg from "../static/images/reviews.svg"
 import Review from "../components/Review"
+import "../static/scss/ReviewPage.scss";
 
 const ReviewPage = () => {
   const { mappedReviews } = useMappedReviews();
@@ -27,12 +28,15 @@ const ReviewPage = () => {
   return (
     <div className="content-wrapper">
       <img src={ReviewImg} alt="Generic illustration of a woman in front of reviews" className="subpage-image" />
-      <p>Been abroad lately? <NavLink to="/leave-review" className="review-page button">Leave a review! <i className="fa-solid fa-arrow-right"></i></NavLink></p>
+      <p className="review-cta-text">Been abroad lately? <NavLink to="/leave-review" className="review-page button">Leave a review! <i className="fa-solid fa-arrow-right"></i></NavLink></p>
       <h1>Reviews</h1>
       {/* Sökruta */}
-      <div className="form-group">
+      <div className="form-group search-group">
         <label htmlFor="reviewSearch">Search review by user's name:</label>
+        <div className="search-container">
+
         <i className="fa-solid fa-magnifying-glass"></i><input type="search" name="reviewSearch" id="reviewSearch" placeholder="Jane Doe" value={searchString} onChange={(e) => {setSearchString(e.target.value); setCurrentPage(1)}} />
+        </div>
       </div>
       <h2>Results</h2>
       {/* loopa igenom de filtrerade och paginerade recensionerna */}

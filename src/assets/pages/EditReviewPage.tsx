@@ -66,7 +66,7 @@ const EditReviewPage = () => {
 
   return (
     <div className="content-wrapper">
-      <NavLink to="/reviews"><i className="fa-solid fa-arrow-left"></i> Back to all reviews</NavLink>
+      <NavLink to="/reviews" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to all reviews</NavLink>
       <img src={world2} alt="Illustration of woman standing with globe" />
       <h1>Edit your review</h1>
       <form onSubmit={handleSubmit}>

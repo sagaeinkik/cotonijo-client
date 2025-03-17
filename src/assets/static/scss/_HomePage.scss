@@ -1,8 +1,11 @@
 @use 'vars' as v;
 
+/* Stilregler för "/" som ej delas på andra sidor */
+
 //Sektioner
 section {
     padding: 7em 1em 3em;
+    min-height: auto;
 
     h1,
     h2 {

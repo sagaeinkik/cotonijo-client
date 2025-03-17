@@ -56,6 +56,7 @@ export interface ReviewContextType {
     reviews: ReviewInfo[];
     reviewLoading: boolean;
     reviewError: string | string[] | null;
+    setReviews: (reviews: ReviewInfo[]) => void;
     getReviews: () => Promise<void>;
     createReview: (review: NewReview) => Promise<void>;
     updateReview: (id: number, review: UpdateReview) => Promise<void>;

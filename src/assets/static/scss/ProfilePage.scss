@@ -1,0 +1,29 @@
+@use 'vars' as v;
+
+/* Stilregler för /profile */
+
+//Användarinfo-sektionen
+.profile-page .userInfo {
+    padding: 0;
+
+    //Själva info
+    .userInfo-text {
+        background-color: white;
+        padding: 1.5em;
+        margin: 1em 0;
+        border-radius: 20px;
+
+        //användarnamn
+        .username {
+            font-style: italic;
+        }
+    }
+}
+//Recensions-knapp
+.profile-page .center {
+    text-align: center;
+
+    p {
+        margin-top: 1em;
+    }
+}

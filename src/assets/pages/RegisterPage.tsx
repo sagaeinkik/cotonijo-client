@@ -36,7 +36,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper auth-wrapper">
       <h1>Sign up</h1>
       <p>We're so glad you want to join us! Fill in some information and you're all set to start leaving reviews.</p>
       { authError && <p className="error">{authError}</p>}
@@ -60,7 +60,7 @@ const RegisterPage = () => {
         </div>
         <input type="submit" value="Register" className="button" />
       </form>
-      <p>Already have an account? <Link to="/login">Log in here!</Link></p>
+      <p className="link">Already have an account? <Link to="/login">Log in here!</Link></p>
     </div>
   )
 }

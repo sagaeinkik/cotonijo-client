@@ -238,6 +238,9 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
                 deleteCookies({ cookieName: "username" });
                 deleteCookies({ cookieName: "fullName" });
                 deleteCookies({ cookieName: "email" });
+
+                //Global event så komponenter kan lyssna efter och omrendera
+                window.dispatchEvent(new CustomEvent('userDeleted', { detail: { userId: id } }));
             }
             
         } catch (error) {

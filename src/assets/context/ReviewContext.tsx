@@ -8,6 +8,7 @@ export const ReviewContext = createContext<ReviewContextType>({
     reviews: [], 
     reviewLoading: false, 
     reviewError: null, 
+    setReviews: () => {},
     getReviews: async () => {},
     createReview: async () => {},
     updateReview: async () => {},
@@ -164,12 +165,26 @@ export const ReviewProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
     //Hämta recensioner vid mount
     useEffect(() => {
+        //Filtreringsfunktion för att ta bort recensioner från användare
+        const handleUserDeleted = (e: any) => {
+            const { userId } = e.detail;
+            setReviews(currentReviews => currentReviews.filter(review => review.author.id !== userId));
+        }; 
+    
+        //Lägg på händelselyssnare för att lyssna efter userDeleted från AuthContext 
+        window.addEventListener("userDeleted", handleUserDeleted);
+    
         getReviews();
-    }, []); 
+        
+        //Ta bort händelselyssnare
+        return () => {
+            window.removeEventListener("userDeleted", handleUserDeleted);
+        };
+    }, []);
 
     //Returnera
     return (
-        <ReviewContext.Provider value={{reviews, reviewLoading, reviewError, getReviews, createReview, updateReview, deleteReview}}>
+        <ReviewContext.Provider value={{reviews, setReviews, reviewLoading, reviewError, getReviews, createReview, updateReview, deleteReview}}>
             {children}
         </ReviewContext.Provider>
     )

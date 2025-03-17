@@ -33,7 +33,7 @@ const LoginPage = () => {
 
 
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper auth-wrapper">
       <h1>Login</h1>
     <form onSubmit={handleSubmit} className="login-form">
       { authError && <p className="error">{authError}</p>}
@@ -48,7 +48,7 @@ const LoginPage = () => {
       </div>
       <input type="submit" value="Log in" className="button" />
     </form>
-    <p>Don't have an account yet? <Link to="/register">Sign up now!</Link></p>
+    <p className="link">Don't have an account yet? <Link to="/register">Sign up now!</Link></p>
     </div>
   )
 }

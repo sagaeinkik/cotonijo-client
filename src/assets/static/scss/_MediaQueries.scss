@@ -1,0 +1,61 @@
+@use 'vars' as v;
+
+/* Media queries för samtliga filer som inte redan har brytpunkter/responsivitet */
+
+@media (max-width: 600px) {
+    //Slimma sektionerna startsida
+    section {
+        padding: 4em 0 2em;
+    }
+
+    //Första sektionen startsida
+    .first-block {
+        padding-top: 0;
+    }
+
+    //Recensionerna startsidan
+    .review-wrapper .hp-review {
+        max-height: 20em;
+        min-width: 15em;
+    }
+}
+
+@media (max-width: 400px) {
+    //Mobilmeny aktivt läge
+    .nav-flex .nav-mobile {
+        padding: 2.5em;
+
+        //bredda meny
+        ul {
+            min-width: 70dvw;
+            min-height: 60dvh;
+        }
+    }
+
+    //Country-listan
+    .country-card {
+        padding: 1.5em 1em;
+        .info h3 {
+            font-size: 1.1em;
+        }
+        //Minska pilen
+        a {
+            font-size: 1.2em;
+        }
+    }
+
+    //Recensioner
+}
+
+@media (max-width: 350px) {
+    //Cotonijo på startsidan
+    .last-block .big-text {
+        font-size: 2.5em;
+    }
+
+    //review-kontroller
+    .review .review-controls .delete-review.button {
+        display: block;
+        margin: 0.5em 0;
+    }
+}

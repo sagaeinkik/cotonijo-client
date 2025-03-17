@@ -155,7 +155,7 @@ const CountryPage = () => {
       {/* Landsvapen */}
       { country.coatOfArms?.svg && <><p>They have a coat of arms:</p><img src={country.coatOfArms.svg} alt={`Coat of arms of ${country.name.official}`} /></> }
 
-      <NavLink to={country.maps.googleMaps} target="_blank">See on Google Maps</NavLink>
+      <NavLink to={country.maps.googleMaps} target="_blank" className="google-maps">See on Google Maps</NavLink>
 
       <h2>Reviews</h2>
       {reviews.length > 0 ? (

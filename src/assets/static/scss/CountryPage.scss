@@ -1,13 +1,6 @@
 @use 'vars' as v;
 
-//Back to countries-länk
-.back-link {
-    color: v.$mediumdark;
-
-    &:hover {
-        color: v.$salmon;
-    }
-}
+/* Stilregler för /country/:id dvs detaljerna för land */
 
 .country-page {
     //Flagga
@@ -37,7 +30,7 @@
     }
 
     //Google maps-länk
-    a {
+    .google-maps {
         margin-top: 1em;
         display: block;
         color: v.$mediumdark;
