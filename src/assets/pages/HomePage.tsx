@@ -30,9 +30,11 @@ const HomePage = () => {
         <CtaButton link="/leave-review" color="blue" text="Leave a review" />
         </div>
       </section>
+
       <div className="divider light-divider">
         <img src={lightDivider} alt="" />
       </div>
+      
       <section className="third-block dark-bg">
         <div className="page-wrap">
           <h2>See what others have to say</h2>
@@ -49,9 +51,11 @@ const HomePage = () => {
           <CtaButton link="/reviews" color="red" text="Read reviews" />
         </div>
       </section>
+
       <div className="divider dark-divider">
         <img src={darkDivider} alt="" />
       </div>
+
       <section className="light-bg last-block">
         <div className="content-wrapper">
           <h2>Where did you come from? </h2>
