@@ -86,6 +86,14 @@ section {
         display: flex;
         flex-direction: column;
 
+        h3 {
+            margin-bottom: 0.2em;
+        }
+
+        .country {
+            margin-bottom: 1em;
+        }
+
         //Citat-ikon
         i {
             font-size: 4em;
