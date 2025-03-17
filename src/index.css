@@ -1,0 +1,314 @@
+@charset "UTF-8";
+/* Media queries för samtliga filer som inte redan har brytpunkter/responsivitet */
+@media (max-width: 600px) {
+  section {
+    padding: 4em 0 2em;
+  }
+  .first-block {
+    padding-top: 0;
+  }
+  .review-wrapper .hp-review {
+    max-height: 20em;
+    min-width: 15em;
+  }
+}
+@media (max-width: 400px) {
+  .nav-flex .nav-mobile {
+    padding: 2.5em;
+  }
+  .nav-flex .nav-mobile ul {
+    min-width: 70dvw;
+    min-height: 60dvh;
+  }
+  .country-card {
+    padding: 1.5em 1em;
+  }
+  .country-card .info h3 {
+    font-size: 1.1em;
+  }
+  .country-card a {
+    font-size: 1.2em;
+  }
+}
+@media (max-width: 350px) {
+  .last-block .big-text {
+    font-size: 2.5em;
+  }
+  .review .review-controls .delete-review.button {
+    display: block;
+    margin: 0.5em 0;
+  }
+}
+/* ALLMÄNNA REGLER */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 2800px;
+  margin: auto;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #dee3e9;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+a,
+i {
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+input,
+textarea,
+select {
+  font-family: Armata, Courier, monospace;
+  font-size: 1em;
+  padding: 0.7em 1.3em;
+}
+
+button,
+input[type=submit] {
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  transition: all 0.5s ease;
+  font-weight: 400;
+}
+
+input[type=submit] {
+  display: block;
+  padding: 1em 1.4em;
+  margin-top: 2em;
+  background-color: #66b480;
+}
+input[type=submit]:hover {
+  background-color: #3f8356;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+}
+
+.content-wrapper {
+  max-width: 50em;
+  margin: auto;
+  padding: 1.5em;
+}
+.content-wrapper h1,
+.content-wrapper h2 {
+  text-align: center;
+}
+.content-wrapper img {
+  width: 100%;
+  max-width: 25em;
+  margin: 3em auto;
+}
+.content-wrapper .search-group {
+  margin: 2em 0;
+}
+.content-wrapper .search-group label {
+  margin-left: 1em;
+}
+.content-wrapper .search-group .search-container {
+  position: relative;
+}
+.content-wrapper .search-group .search-container input[type=search] {
+  width: 100%;
+  padding-left: 2.5em;
+  border: none;
+  border-radius: 400px;
+}
+.content-wrapper .search-group .search-container input[type=search]:focus {
+  outline: 1px solid #435563;
+}
+.content-wrapper .search-group i {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8a98ab;
+}
+
+.auth-wrapper {
+  min-height: 70dvh;
+}
+.auth-wrapper .link {
+  margin-top: 1em;
+}
+.auth-wrapper .link a {
+  color: #435563;
+  -webkit-text-decoration: 2px dotted underline;
+          text-decoration: 2px dotted underline;
+}
+.auth-wrapper .link a:hover {
+  color: #da676d;
+}
+
+.error,
+.confirm-message {
+  color: #da676d;
+  margin: 1em 0 0;
+}
+
+/*  DELADE REGLER */
+.button {
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  display: inline-block;
+  color: white;
+  border-radius: 10px;
+  background-color: #435563;
+}
+.button.green {
+  background-color: #66b480;
+}
+.button.green:hover {
+  background-color: #3f8356;
+}
+.button.red {
+  background-color: #da676d;
+}
+.button.red:hover {
+  background-color: #a74a4f;
+}
+.button.blue {
+  background-color: #8a98ab;
+}
+.button.blue:hover {
+  background-color: #435563;
+}
+
+button.button {
+  padding: 0.75em 1em;
+}
+
+.pagination {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2em auto 0;
+}
+.pagination button {
+  margin: 0.5em;
+  border: none;
+}
+.pagination button:hover {
+  background-color: #66b480;
+}
+.pagination button:disabled {
+  background-color: #8a98ab;
+}
+
+footer {
+  background-color: #212323;
+  background-image: url("./assets/static/images/arrow2.png");
+  background-size: 15px;
+  background-repeat: repeat-x;
+  color: #dee3e9;
+  padding: 2em;
+  text-align: center;
+  margin-top: 4em;
+}
+footer .credits a,
+footer .credits i {
+  display: block;
+  font-size: 1.7em;
+  margin: 1em;
+  color: #66b480;
+}
+footer .credits a:hover,
+footer .credits i:hover {
+  color: #da676d;
+}
+
+.bold-text {
+  font-weight: 600;
+}
+
+/* RECENSIONER */
+.review {
+  margin-top: 1em;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1.5em;
+  border-radius: 25px;
+}
+.review .username {
+  color: #8a98ab;
+}
+.review .fa-solid.fa-star {
+  color: #da676d;
+}
+.review .fa-regular.fa-star {
+  color: #435563;
+}
+.review .country-flag {
+  margin-right: 0.3em;
+  font-size: 1.8em;
+  position: relative;
+  top: 0.1em;
+}
+.review .review-content {
+  margin: 1em 0;
+}
+.review .published {
+  color: #8a98ab;
+  font-style: italic;
+}
+.review .review-controls .delete-review.button {
+  padding: 0.75em 1em;
+  background-color: #da676d;
+}
+.review .review-controls .delete-review.button:hover {
+  background-color: #a74a4f;
+}
+.review .review-controls a.edit-review.button {
+  margin-right: 2em;
+}
+.review .review-controls .edit-review.button:hover {
+  background-color: #8a98ab;
+}
+
+.back-link {
+  color: #435563;
+  -webkit-text-decoration: 2px dotted underline;
+          text-decoration: 2px dotted underline;
+}
+.back-link:hover {
+  color: #da676d;
+}
+
+/* FORMULÄR */
+.form-group label {
+  margin: 1.5em 0 0.5em 1em;
+  display: block;
+}
+.form-group input[type=text],
+.form-group input[type=email],
+.form-group input[type=password],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+}
+.form-group textarea {
+  min-height: 15em;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* Stilregler för /country/:id dvs detaljerna för land */
+.country-page .cp-country-flag {
+  font-size: 6em;
+  text-align: center;
+}
+.country-page h3:not(.review h3) {
+  margin-top: 1.4em;
+}
+.country-page ul {
+  list-style-type: none;
+}
+.country-page ul li span {
+  font-style: italic;
+}
+.country-page img {
+  width: 100%;
+  max-width: 23em;
+}
+.country-page .google-maps {
+  margin-top: 1em;
+  display: block;
+  color: #435563;
+  -webkit-text-decoration: 2px dotted underline;
+          text-decoration: 2px dotted underline;
+}
+.country-page .google-maps:hover {
+  color: #da676d;
+}/*# sourceMappingURL=CountryPage.css.map */

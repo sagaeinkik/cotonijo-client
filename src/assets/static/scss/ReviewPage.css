@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* Stilregler för /reviews och /edit-review/:id */
+.review-cta-text {
+  text-align: center;
+  margin: 2em 0;
+}
+.review-cta-text .review-page.button {
+  background-color: #66b480;
+}
+.review-cta-text .review-page.button:hover {
+  background-color: #3f8356;
+}/*# sourceMappingURL=ReviewPage.css.map */

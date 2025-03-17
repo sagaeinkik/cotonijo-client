@@ -13,4 +13,4 @@ Jag har valt att göra en applikation som konsumerar ett API som listar olika l�
 
 Det externa API:et som används, https://restcountries.com/, returnerar mycket användbar data – på engelska. Därför har jag valt att göra klientapplikationen på engelska också, så att utskrifterna kan vara mer sömlösa utan för många språkbyten.
 
-Sökningar på länder och användare görs på valfritt språk.
+Sökningar på länder görs på valfritt språk.

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* Stilregler för /profile */
+.profile-page .userInfo {
+  padding: 0;
+}
+.profile-page .userInfo .userInfo-text {
+  background-color: white;
+  padding: 1.5em;
+  margin: 1em 0;
+  border-radius: 20px;
+}
+.profile-page .userInfo .userInfo-text .username {
+  font-style: italic;
+}
+
+.profile-page .center {
+  text-align: center;
+}
+.profile-page .center p {
+  margin-top: 1em;
+}/*# sourceMappingURL=ProfilePage.css.map */
