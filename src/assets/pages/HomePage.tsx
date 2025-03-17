@@ -23,6 +23,7 @@ const HomePage = () => {
           <CtaButton link="/countries" color="green" text="Search countries" />
         </div>
       </section>
+      
       <section className="second-block light-bg">
         <div className="content-wrapper">
         <h2>Share your experience</h2>
