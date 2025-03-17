@@ -19,6 +19,13 @@ section {
     }
 }
 
+.light-divider {
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
 .dark-bg {
     background-color: v.$dark;
     color: v.$light;
