@@ -105,14 +105,14 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
                 //Spara användare, slå om autentisering till true
                 setUser(loggedInUser);
                 setIsAuthenticated(true);
+                
                 //Lagra allt i cookie (ifall man refreshar) 
-                if(data.loggedInUser) {
-                    cookieCreator({ cookieName: "userId", cookieValue: data.loggedInUser.id.toString()});
-                    cookieCreator({ cookieName: "fullName", cookieValue: data.loggedInUser.fullName});
-                    cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
-                    cookieCreator({ cookieName: "email", cookieValue: data.loggedInUser.email});
-                    cookieCreator({ cookieName: "registered", cookieValue: data.loggedInUser.registered.toString()});
-                }
+                cookieCreator({ cookieName: "userId", cookieValue: data.loggedInUser.id.toString()});
+                cookieCreator({ cookieName: "fullName", cookieValue: data.loggedInUser.fullName});
+                cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
+                cookieCreator({ cookieName: "email", cookieValue: data.loggedInUser.email});
+                cookieCreator({ cookieName: "registered", cookieValue: data.loggedInUser.registered.toString()});
+                
             }
 
         } catch (error) {
@@ -156,13 +156,12 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
                 setUser(newUser);
 
                 //Spara i kaka
-                if(data.loggedInUser) {
-                    cookieCreator({ cookieName: "userId", cookieValue: data.loggedInUser.id.toString()});
-                    cookieCreator({ cookieName: "fullName", cookieValue: data.loggedInUser.fullName});
-                    cookieCreator({ cookieName: "username", cookieValue: data.loggedInUser.username});
-                    cookieCreator({ cookieName: "email", cookieValue: data.loggedInUser.email});
-                    cookieCreator({ cookieName: "registered", cookieValue: data.loggedInUser.registered.toString()});
-                }
+                cookieCreator({ cookieName: "userId", cookieValue: data.newUser.id.toString()});
+                cookieCreator({ cookieName: "fullName", cookieValue: data.newUser.fullName});
+                cookieCreator({ cookieName: "username", cookieValue: data.newUser.username});
+                cookieCreator({ cookieName: "email", cookieValue: data.newUser.email});
+                cookieCreator({ cookieName: "registered", cookieValue: data.newUser.registered.toString()});
+                
             }
         } catch (error) {
             setAuthError(error instanceof Error ? error.message : "Something went wrong when registering user...");
