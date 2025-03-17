@@ -3,7 +3,7 @@ import CtaButton from "../components/CtaButton"
 import HomepageReview from "../components/HomepageReview";
 import { useMappedReviews } from "../hooks/useMappedReviews";
 import darkDivider from "../static/images/divider.svg";
-import lightDivider from "../static/images/divider2.svg";
+import lightDivider from "../static/images/divider3.svg";
 
 const HomePage = () => {
   const { mappedReviews } = useMappedReviews(); 
@@ -23,7 +23,7 @@ const HomePage = () => {
           <CtaButton link="/countries" color="green" text="Search countries" />
         </div>
       </section>
-      
+
       <section className="second-block light-bg">
         <div className="content-wrapper">
         <h2>Share your experience</h2>
