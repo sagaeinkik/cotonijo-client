@@ -37,9 +37,9 @@ const CountryPage = () => {
 
       <h2>Information</h2>
       <h3>Names and translations</h3>
-      {/* Native name */}
+      {/* Native name – mappa igenom och hoppa över språkkoden i språken */}
       {country.name.nativeName && (() => {
-        const names = Object.entries(country.name.nativeName).map(([langCode, native]) => `${native.official} (commonly ${native.common})`);
+        const names = Object.entries(country.name.nativeName).map(([_, native]) => `${native.official} (commonly ${native.common})`);
 
         // Om det bara finns ett namn, returnera det direkt
         if (names.length === 1) {
@@ -114,12 +114,12 @@ const CountryPage = () => {
         if (languageEntries.length === 0) return null; // Om inga språk finns, returnera ingenting
 
         if (languageEntries.length === 1) {
-        // Ett språk
-        const [code, language] = languageEntries[0];
+        // Ett språk (hoppa över nyckel dvs språkkod)
+        const [_, language] = languageEntries[0];
         return <span>In {country.name.common} they speak {language}, </span>;
         } else {
         // Flera språk
-        const languageValues = languageEntries.map(([code, language]) => language);
+        const languageValues = languageEntries.map(([_, language]) => language);
         const lastLanguage = languageValues.pop();
         return <span>In {country.name.common} they speak {languageValues.join(', ')} and {lastLanguage}, </span>;
       }
@@ -135,7 +135,7 @@ const CountryPage = () => {
 
          // Formatera valutanamn och symboler
           const formattedCurrencies = currencyEntries.map(
-            ([code, currency]) => `${currency.name} (${currency.symbol})`
+            ([_, currency]) => `${currency.name} (${currency.symbol})`
           );
 
         return (
